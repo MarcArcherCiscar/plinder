@@ -1,13 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
-import { CardDragger } from './components';
+import React from 'react';
 
-function App() {
-    return (
-      <div className="App">
-        <CardDragger />
-      </div>
-    );
-  }
-  
-  export default App;
+const App = () => {
+
+  const savePin = () => {
+    fetch('http://localhost:3000/store-data', {
+        method: 'POST',
+        // We convert the React state to JSON and send it as the POST body
+        body: JSON.stringify("this.state")
+      }).then(function(response) {
+        console.log(response)
+        return response.json();
+      });
+  };
+
+  return (
+    <div className='app'>
+      <button
+        type="button"
+        onClick={savePin}
+        className="bg-red-500 text-white font-bold p-2 rounded-full w-28 outline-none"
+      >
+        Save Pin
+      </button>
+    </div>
+  )
+}
+
+export default App
